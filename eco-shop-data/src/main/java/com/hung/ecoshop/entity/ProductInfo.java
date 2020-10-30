@@ -1,42 +1,51 @@
 package com.hung.ecoshop.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.DynamicUpdate;
+import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Entity
+@Table(name = "product_info")
 @Data
-@DynamicUpdate
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class ProductInfo implements Serializable {
+
     @Id
-    private String productId;
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+    @Column(name = "id", updatable = false, nullable = false)
+    private UUID id;
 
     @NotNull
     private String productName;
 
     @NotNull
-    private BigDecimal productPrice;
+    private BigDecimal price;
 
     @NotNull
     @Min(0)
-    private Integer productStock;
+    private Integer stock;
 
-    private String productDescription;
+    private String description;
 
-    private String productIcon;
+    private String image;
 
     /** 0: on-sale 1: off-sale */
-
     @ColumnDefault("0")
     private Integer productStatus;
 
@@ -44,10 +53,10 @@ public class ProductInfo implements Serializable {
     private Integer categoryType;
 
     @CreationTimestamp
-    private Date createTime;
-    @UpdateTimestamp
-    private Date updateTime;
+    @Column(name = "created_time", updatable = false)
+    private LocalDateTime createdTime;
 
-    public ProductInfo() {
-    }
+    @UpdateTimestamp
+    @Column(name = "updated_time", updatable = false)
+    private LocalDateTime updatedTime;
 }

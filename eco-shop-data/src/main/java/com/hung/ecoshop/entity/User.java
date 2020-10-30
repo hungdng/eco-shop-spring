@@ -1,8 +1,10 @@
 package com.hung.ecoshop.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
@@ -10,55 +12,47 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.util.UUID;
 
 @Entity
-@Data
 @Table(name = "users")
+@Data
+@Builder
 @NoArgsConstructor
+@AllArgsConstructor
 public class User implements Serializable {
 
-    private static final long serialVersionUID = 4887904943282174032L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+    @Column(name = "id", updatable = false, nullable = false)
+    private UUID id;
 
     @NaturalId
     @NotEmpty
     private String email;
+
     @NotEmpty
-    @Size(min = 3, message = "Length must be more than 3")
+    @Size(min = 3)
     private String password;
+
     @NotEmpty
+    @Size(max = 200)
     private String name;
+
     @NotEmpty
+    @Size(max = 20)
     private String phone;
+
     @NotEmpty
     private String address;
+
     @NotNull
     private boolean active;
+
     @NotEmpty
+    @Size(max = 20)
     private String role = "ROLE_CUSTOMER";
-
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JsonIgnore  // fix bi-direction toString() recursion problem
-    private Cart cart;
-
-
-
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", name='" + name + '\'' +
-                ", phone='" + phone + '\'' +
-                ", address='" + address + '\'' +
-                ", active=" + active +
-                ", role='" + role + '\'' +
-                '}';
-    }
 
 }
 

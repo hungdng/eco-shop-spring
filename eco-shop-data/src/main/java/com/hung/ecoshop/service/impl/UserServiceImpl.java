@@ -1,16 +1,11 @@
 package com.hung.ecoshop.service.impl;
 
-
-import com.hung.ecoshop.entity.Cart;
 import com.hung.ecoshop.entity.User;
 import com.hung.ecoshop.enums.ResultEnum;
 import com.hung.ecoshop.exception.MyException;
-import com.hung.ecoshop.repository.CartRepository;
 import com.hung.ecoshop.repository.UserRepository;
 import com.hung.ecoshop.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.DependsOn;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,8 +18,6 @@ public class UserServiceImpl implements UserService {
 //    private PasswordEncoder passwordEncoder;
     @Autowired
     UserRepository userRepository;
-    @Autowired
-    CartRepository cartRepository;
 
     @Override
     public User findOne(String email) {
@@ -42,17 +35,11 @@ public class UserServiceImpl implements UserService {
         //register
 //        user.setPassword(passwordEncoder.encode(user.getPassword()));
         try {
-            User savedUser = userRepository.save(user);
-
-            // initial Cart
-            Cart savedCart = cartRepository.save(new Cart(savedUser));
-            savedUser.setCart(savedCart);
-            return userRepository.save(savedUser);
+            return userRepository.save(user);
 
         } catch (Exception e) {
             throw new MyException(ResultEnum.VALID_ERROR);
         }
-
     }
 
     @Override

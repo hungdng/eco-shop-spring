@@ -10,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/products")
@@ -27,12 +28,12 @@ public class ProductController {
 
     @GetMapping("/{productId}")
     public ProductInfo showOne(@PathVariable("productid") String productId){
-        return productService.findOne(productId);
+        return productService.findOne(UUID.fromString(productId));
     }
 
     @PostMapping
     public ResponseEntity create(@Valid @RequestBody ProductInfo product, BindingResult bindingResult){
-        ProductInfo productIdExists = productService.findOne(product.getProductId());
+        ProductInfo productIdExists = productService.findOne(product.getId());
         if (productIdExists != null) {
             bindingResult.rejectValue("productId", "error.product",
                     "There is already a product with the code provided");

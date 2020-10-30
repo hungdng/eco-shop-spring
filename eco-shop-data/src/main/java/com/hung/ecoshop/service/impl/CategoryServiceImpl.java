@@ -1,6 +1,5 @@
 package com.hung.ecoshop.service.impl;
 
-
 import com.hung.ecoshop.entity.ProductCategory;
 import com.hung.ecoshop.enums.ResultEnum;
 import com.hung.ecoshop.exception.MyException;
@@ -11,17 +10,15 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.UUID;
 
-/**
- * Created By Zhu Lin on 3/10/2018.
- */
 @Service
 public class CategoryServiceImpl implements CategoryService {
     @Autowired
     ProductCategoryRepository productCategoryRepository;
 
     @Override
-    public ProductCategory findOne(Integer categoryId) {
+    public ProductCategory findOne(UUID categoryId) {
         return productCategoryRepository.findById(categoryId).orElse(null);
     }
 
@@ -51,7 +48,4 @@ public class CategoryServiceImpl implements CategoryService {
     public ProductCategory save(ProductCategory productCategory) {
         return productCategoryRepository.save(productCategory);
     }
-
-
-
 }

@@ -3,10 +3,11 @@ package com.hung.ecoshop.service;
 import com.hung.ecoshop.entity.ProductCategory;
 
 import java.util.List;
+import java.util.UUID;
 
 public interface CategoryService {
 
-    ProductCategory findOne(Integer categoryId);
+    ProductCategory findOne(UUID categoryId);
 
     List<ProductCategory> findAll();
 
