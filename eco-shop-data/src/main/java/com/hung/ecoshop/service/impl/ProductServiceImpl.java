@@ -34,7 +34,8 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Page<ProductInfo> findUpAll(Pageable pageable) {
-        return productInfoRepository.findAllByProductStatusOrderByIdAsc(ProductStatusEnum.UP.getCode(),pageable);
+//        return productInfoRepository.findAllByProductStatusOrderByIdAsc(ProductStatusEnum.UP.getValue(),pageable);
+        return null;
     }
 
     @Override
@@ -43,19 +44,21 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Page<ProductInfo> findAllInCategory(Integer categoryType, Pageable pageable) {
-        return productInfoRepository.findAllByCategoryTypeOrderByIdAsc(categoryType, pageable);
+    public Page<ProductInfo> findAllInCategory(String categoryType, Pageable pageable) {
+//        return productInfoRepository.findAllByCategoryTypeOrderByIdAsc(categoryType, pageable);
+        return null;
     }
 
     @Override
     public ProductInfo update(ProductInfo productInfo) {
 
         // if null throw exception
-        categoryService.findByCategoryType(productInfo.getCategoryType());
-        if(productInfo.getProductStatus() > 1) {
-            throw new MyException(ResultEnum.PRODUCT_STATUS_ERROR);
-        }
-        return productInfoRepository.save(productInfo);
+//        categoryService.findByCategoryType(productInfo.getCategoryType());
+//        if(productInfo.getProductStatus() > 1) {
+//            throw new MyException(ResultEnum.PRODUCT_STATUS_ERROR);
+//        }
+//        return productInfoRepository.save(productInfo);
+        return null;
     }
 
     @Override

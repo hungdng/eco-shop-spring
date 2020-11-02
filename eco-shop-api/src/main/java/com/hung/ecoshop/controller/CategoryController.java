@@ -23,9 +23,10 @@ public class CategoryController {
 
     @PostMapping
     public ResponseEntity create(@Valid @RequestBody ProductCategory productCategory, BindingResult bindingResult){
-//        ProductCategory categoryIdExists =categoryService.findOne(productCategory.getCategoryId());
-//        if (categoryIdExists != null) {
-//            bindingResult.rejectValue("categoryId", "error.productCategory",
+        if (productCategory.getId() != null) return ResponseEntity.badRequest().build();
+//        boolean categoryIdExists =categoryService.isExists(productCategory.getId());
+//        if (categoryIdExists) {
+//            bindingResult.rejectValue("id", "error.productCategory",
 //                    "There is already a product with the code provided");
 //        }
         if (bindingResult.hasErrors()){

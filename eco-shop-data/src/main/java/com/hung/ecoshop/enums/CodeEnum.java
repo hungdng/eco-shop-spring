@@ -1,6 +1,7 @@
 package com.hung.ecoshop.enums;
 
 public interface CodeEnum {
-    Integer getCode();
+    String getValue();
+    String getName();
 
 }

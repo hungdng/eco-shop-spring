@@ -17,7 +17,7 @@ public interface ProductService {
     Page<ProductInfo> findAll(Pageable pageable);
 
     // All products in a category
-    Page<ProductInfo> findAllInCategory(Integer categoryType, Pageable pageable);
+    Page<ProductInfo> findAllInCategory(String categoryType, Pageable pageable);
 
     ProductInfo update(ProductInfo productInfo);
 

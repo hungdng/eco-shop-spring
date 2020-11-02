@@ -17,5 +17,6 @@ public interface CategoryService {
 
     ProductCategory save(ProductCategory productCategory);
 
+    boolean isExists(UUID id);
 
 }

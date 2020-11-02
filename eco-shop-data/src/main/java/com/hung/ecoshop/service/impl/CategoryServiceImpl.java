@@ -48,4 +48,9 @@ public class CategoryServiceImpl implements CategoryService {
     public ProductCategory save(ProductCategory productCategory) {
         return productCategoryRepository.save(productCategory);
     }
+
+    @Override
+    public boolean isExists(UUID id) {
+        return productCategoryRepository.existsById(id);
+    }
 }

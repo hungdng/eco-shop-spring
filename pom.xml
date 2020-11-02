@@ -19,12 +19,30 @@
 
 	<properties>
 		<java.version>11</java.version>
+		<commons-lang3.version>3.9</commons-lang3.version>
 	</properties>
 
 	<modules>
 		<module>eco-shop-data</module>
 		<module>eco-shop-api</module>
+		<module>eco-shop-common</module>
 	</modules>
+
+	<dependencies>
+		<!-- Lombok - Make Java look less redundant -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- Apache Commons -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>${commons-lang3.version}</version>
+		</dependency>
+	</dependencies>
 
 	<build>
 		<plugins>

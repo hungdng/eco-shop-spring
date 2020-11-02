@@ -5,7 +5,7 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public enum ProductStatusEnum implements CodeEnum{
+public enum CategoryStatusEnum implements CodeEnum{
     UP("0", "Available"),
     DOWN("1", "Unavailable")
     ;
@@ -14,7 +14,7 @@ public enum ProductStatusEnum implements CodeEnum{
 
     public String getStatus(Integer code) {
 
-        for(ProductStatusEnum statusEnum : ProductStatusEnum.values()) {
+        for(CategoryStatusEnum statusEnum : CategoryStatusEnum.values()) {
             if(statusEnum.getValue().equals(code)) return statusEnum.getName();
         }
         return "";

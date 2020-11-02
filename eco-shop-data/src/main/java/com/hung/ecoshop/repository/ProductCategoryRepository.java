@@ -9,8 +9,10 @@ import java.util.UUID;
 public interface ProductCategoryRepository extends JpaRepository<ProductCategory, UUID> {
     // Some category
     List<ProductCategory> findByCategoryTypeInOrderByCategoryTypeAsc(List<Integer> categoryTypes);
+
     // All category
     List<ProductCategory> findAllByOrderByCategoryType();
+
     // One category
     ProductCategory findByCategoryType(Integer categoryType);
 }

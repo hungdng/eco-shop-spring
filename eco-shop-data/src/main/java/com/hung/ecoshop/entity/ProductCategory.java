@@ -1,5 +1,6 @@
 package com.hung.ecoshop.entity;
 
+import com.hung.ecoshop.enums.CategoryStatusEnum;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -33,6 +34,8 @@ public class ProductCategory implements Serializable {
 
     @NaturalId
     private Integer categoryType;
+
+    private CategoryStatusEnum status;
 
     @CreationTimestamp
     @Column(name = "created_time", updatable = false)

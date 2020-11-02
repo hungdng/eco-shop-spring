@@ -1,5 +1,6 @@
 package com.hung.ecoshop.entity;
 
+import com.hung.ecoshop.enums.ProductStatusEnum;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -46,8 +47,7 @@ public class ProductInfo implements Serializable {
     private String image;
 
     /** 0: on-sale 1: off-sale */
-    @ColumnDefault("0")
-    private Integer productStatus;
+    private ProductStatusEnum productStatus;
 
     @ColumnDefault("0")
     private Integer categoryType;
